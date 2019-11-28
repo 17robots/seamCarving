@@ -23,17 +23,16 @@ int main(int argc, char** argv) {
             printHelp();
             return 0;
         }
+        int max;
         horizontalRemove = std::stoi(argv[3]);
         verticalRemove = std::stoi(argv[2]);
-        if(!readMatrix(argv[1], initial))
+        if(!readMatrix(argv[1], &initial, max))
             return 0;
     }
-
     int totalRemoved = 0;
     // calculate energy with current matrix
     matrix energyMatrix = calculateEnergy(initial);
     matrix cumulative = cumulativeEnergy(energyMatrix);
-
     do {
         //now flag them for removal by tracing through the cumulative matrix
         auto toRemove = traceForRemoval(cumulative);

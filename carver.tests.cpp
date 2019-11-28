@@ -27,10 +27,25 @@ bool case4A() {
 }
 
 bool case5A() {
-    matrix testCase = {};
-    matrix correctAnswer = {};
-    char filename[13] = "TestCase.pgm";
-    return correctAnswer == readMatrix(filename);
+    std::cout << "Test 5a\n";
+    matrix testCase;
+    matrix correctAnswer = {
+        {(char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65)},
+        {(char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65)},
+        {(char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(65), (char)(66), (char)(66), (char)(66)},
+        {(char)(67), (char)(65), (char)(65)}};
+    int correctMax = 255;
+    char* filename = "TestCase.pgm";
+    matrix toTest;
+    int max;
+    if(readMatrix(filename, &toTest, max)) {
+        if(correctAnswer != toTest)
+            std::cout << "The returned value does not match the correct value\n";
+        if(max != correctMax)
+            std::cout << "The returned max value does not match the correct max value\n";
+        return correctAnswer == toTest && max == correctMax;
+    }
+    return false;
 }
 
 // calculateEnergy Tests
