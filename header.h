@@ -23,6 +23,16 @@ matrix rotateCounterClockWise(matrix &m) {
     return m;
 }
 
-matrix readMatrix(char* filename) {
-    return {{'a', 'b', 'c'}, {'d', 'e', 'f'}};
+bool readMatrix(char* filename, matrix &m) {
+    std::ifstream inFile;
+    inFile.open(filename, std::ios::in);
+    if(!inFile) {
+        std::cout << "Cannot open file. Please try again with a different one\n";
+        return false;
+    }
+    return true;
+}
+
+std::vector<std::pair<int,int>> traceForRemoval(matrix &m) {
+    
 }

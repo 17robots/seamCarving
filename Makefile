@@ -1,11 +1,11 @@
 CC=g++
 
 carver: carver.o
-	$(CC) carver.cpp -o carver
+	$(CC) carver.cpp -o build/carver
 
 debug: carver.o
-	$(CC) carver.cpp -o -g carver
+	$(CC) carver.cpp -g -o debug/carver
 test: carver.tests.o
-	$(CC) carver.tests.cpp -o tests
+	$(CC) carver.tests.cpp -o test/tests
 clean:
-	rm -rf *.o carver tests
+	rm -rf *.o debug/* build/* test/*
