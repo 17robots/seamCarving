@@ -2,11 +2,34 @@
 
 // test cases defined here
 bool case1A() {
-    matrix testCase = {};
-    matrix correctAnswer = {};
-    return correctAnswer == calculateEnergy(testCase);
-}
+    matrix testCase = {
+        {(char)(65), (char)(65), (char)(66), (char)(66)},
+        {(char)(66), (char)(66), (char)(66), (char)(67)}
+    };
+    matrix correctAnswer = {
+        {(char)(1), (char)(2), (char)(1), (char)(1)},
+        {(char)(1), (char)(1), (char)(1), (char)(2)}
+    };
+    matrix toTest = calculateEnergy(testCase);
+    // matrix toTest = {};
+    if(toTest != correctAnswer) {
+        std::cout << "Calculated Value Does Not Match Correct Value\n";
+        std::cout << "Correct Value:\n";
+        for(auto x : correctAnswer) {
+            for(auto y : x)
+                std::cout << (int)(y) << ' ';
+            std::cout << "\n";
+        }
 
+        std::cout << "Calculated Answed:\n";
+        for(auto x : toTest) {
+            for(auto y : x)
+                std::cout << (int)(y) << ' ';
+            std::cout << "\n";
+        }
+    }
+    return correctAnswer == toTest;
+}
 
 bool case2A() {
     matrix testCase = {};
@@ -81,26 +104,31 @@ int main() {
     std::cout << (result ? "Tests Passed\n" : "Tests Failed\n");
     totalPass += result ? 1 : 0;
     totalFail += result ? 0 : 1;
+
     std::cout << "Running CumulativeEnergy Tests...";
     result = test2();
     std::cout << (result ? "Tests Passed\n" : "Tests Failed\n");
     totalPass += result ? 1 : 0;
     totalFail += result ? 0 : 1;
+
     std::cout << "Running RotateClockWise Tests...";
     result = test3();
     std::cout << (result ? "Tests Passed\n" : "Tests Failed\n");
     totalPass += result ? 1 : 0;
     totalFail += result ? 0 : 1;
+
     std::cout << "Running RotateCounterClockWise Tests...";
     result = test4();
     std::cout << (result ? "Tests Passed\n" : "Tests Failed\n");
     totalPass += result ? 1 : 0;
     totalFail += result ? 0 : 1;
+    
     std::cout << "Running ReadMatrix Tests...";
     result = test5();
     std::cout << (result ? "Tests Passed\n" : "Tests Failed\n");
     totalPass += result ? 1 : 0;
     totalFail += result ? 0 : 1;
+
     std::cout << "Test Sections Passed: " << totalPass << '\n';
     std::cout << "Test Sections Failed: " << totalFail << '\n';
 }

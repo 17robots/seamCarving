@@ -5,11 +5,76 @@
 #include <algorithm>
 #include <fstream>
 #include <sstream>
+#include <cmath>
 typedef std::vector<std::vector<char>> matrix;
 
 // smallest case is when there's one row, cumulative energy is sum of total row percolated through the array
 matrix calculateEnergy(matrix &m) {
-    return m;
+    std::vector<char> row;
+    matrix returnedMatrix;
+    int counter = 0;
+    char result;
+    for(int i = 0; i < m.size(); ++i) {
+        for(int j = 0; j < m.at(i).size(); ++j) {
+            if(i == 0 && j == 0) { // top left corner
+                result = (char)(
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j + 1))) + 
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i + 1).at(j)))
+                );
+            } else if(i == 0 && j == m.at(i).size() - 1) { // top right corner
+                result = (char)(
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j - 1))) + 
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i + 1).at(j)))
+                );
+            } else if(i == m.size() - 1 && j == 0) { // bottom left corner
+                result = (char)(
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j + 1))) + 
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i - 1).at(j)))
+                );
+            } else if(i == m.size() - 1 && j == m.at(i).size() - 1) { // bottom right corner
+                result = (char)(
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j - 1))) + 
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i - 1).at(j)))
+                );
+            } else if(j == 0) { // left edges not corners
+                result = (char)(
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j + 1))) + 
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i + 1).at(j))) +
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i - 1).at(j)))
+                );
+            } else if(j == m.at(i).size() - 1) { // right edge not corners
+                result = (char)(
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j - 1))) + 
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i + 1).at(j))) +
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i - 1).at(j)))
+                );
+            } else if(i == 0) { // top edge
+                result = (char)(
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j - 1))) + 
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j + 1))) +
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i + 1).at(j)))
+                );
+            } else if(i == m.size() - 1) { // bottom edge
+                result = (char)(
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j - 1))) + 
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j + 1))) +
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i - 1).at(j)))
+                );
+            } else { // everything else
+                result = (char)(
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j + 1))) + 
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i + 1).at(j))) +
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i - 1).at(j))) +
+                    abs((int)(m.at(i).at(j)) - (int)(m.at(i).at(j - 1)))
+                );
+            }
+            row.push_back(result);
+        }
+        returnedMatrix.push_back(row);
+        row.clear();
+        row.shrink_to_fit();
+    }
+    return returnedMatrix;
 }
 
 matrix cumulativeEnergy(matrix &m) {
