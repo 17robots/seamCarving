@@ -433,7 +433,7 @@ int main()
     }
     logger.close();
     std::cout << "Tests Passed: " << totalPass << '\n';
-    std::cout << "Total Fail: \n"
+    std::cout << "Total Fail: "
               << totalFail << '\n';
 
     return 0;
