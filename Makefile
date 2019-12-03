@@ -10,4 +10,4 @@ test: carver.tests.o
 testDebug: carver.tests.o
 	$(CC) carver.tests.cpp -g -o test/tests
 clean:
-	rm -rf *.o debug/* build/* test/*
+	rm -rf *.o debug/* build/* test/tests projectTest/*.pgm_processed.pgm

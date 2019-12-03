@@ -28,80 +28,67 @@ int main(int argc, char** argv) {
         }
         horizontalRemove = std::stoi(argv[3]);
         verticalRemove = std::stoi(argv[2]);
-        std::cout << "Reading in Initial Matrix\n";
-        if(!readMatrix(argv[1], initial, max))
-            return 0;
     }
 
-    std::cout << "Removing " << verticalRemove << " vertical seams and " << horizontalRemove << " horizontal seams\n";
-    std::cout << "Current Matrix: \n";
+    // std::cout << "Attempting to removing " << verticalRemove << " vertical seams and " << horizontalRemove << " horizontal seams\n";
+    // if(verticalRemove > initial.at(0).size()) {
+    //     std::cout << "Error: The number of vertical removes (" << verticalRemove << ") is larger than the number of columns in the image (" << initial.at(0).size() << ")\n"; 
+    //     return 0;
+    // }
 
-    for(auto x : initial) {
-        for(auto y : x)
-            std::cout << y << ' ';
-        std::cout << '\n';
-    }
+    // // calculate energy with current matrix
+    // std::cout << "Calculating Energy Matrix\n";
+    // matrix energyMatrix = calculateEnergy(initial);
 
-    // calculate energy with current matrix
-    std::cout << "Calculating Energy Matrix\n";
-    matrix energyMatrix = calculateEnergy(initial);
+    // // calculate cumulative energy
+    // std::cout << "Calculating Cumulative Energy\n";
+    // matrix cumulative = cumulativeEnergy(energyMatrix, max);
 
-    // calculate cumulative energy
-    std::cout << "Calculating Cumulative Energy\n";
-    matrix cumulative = cumulativeEnergy(energyMatrix, max);
+    // std::cout << "Removing Vertical Seams\n";
+    // for(int i = 0; i < verticalRemove; ++i) {
+    //     //now flag them for removal by tracing through the cumulative matrix
+    //     auto toRemove = traceForRemoval(cumulative);
 
-    std::cout << "Removing Vertical Seams\n";
-    for(int i = 0; i < verticalRemove; ++i) {
-        //now flag them for removal by tracing through the cumulative matrix
-        auto toRemove = traceForRemoval(cumulative);
-        std::cout << "Removing these points\n";
-        for(auto x : toRemove) {
-            std::cout << '(' << x.first << ',' << x.second << ") ";
-        }
-        std::cout << "\n";
+    //     for(auto x : toRemove) {
+    //         auto iter = initial.at(x.first).begin();
+    //         iter += x.second;
+    //         initial.at(x.first).erase(iter); // remove the colomn
+    //         iter = cumulative.at(x.first).begin();
+    //         iter += x.second;
+    //         cumulative.at(x.first).erase(iter); // also do it from the cumulative one
+    //     }
+    // } 
 
-        for(auto x : toRemove) {
-            auto iter = initial.at(x.first).begin();
-            iter += x.second;
-            initial.at(x.first).erase(iter); // remove the colomn
-            iter = cumulative.at(x.first).begin();
-            iter += x.second;
-            cumulative.at(x.first).erase(iter); // also do it from the cumulative one
-        }
-    } 
+    // // rotate the matrix and go again
+    // std::cout << "Rotating clockwise to remove horizontal\n";
+    // matrix clockWise = rotateClockWise(initial, max);
+    // matrix cumulativeRotate = rotateClockWise(cumulative, max); // we will need this for tracing
 
-    // rotate the matrix and go again
-    std::cout << "Rotating clockwise to remove horizontal\n";
-    matrix clockWise = rotateClockWise(initial, max);
-    matrix cumulativeRotate = rotateClockWise(cumulative, max); // we will need this for tracing
+    // for(int i = 0; i < horizontalRemove; ++i) {
+    //     //now flag them for removal by tracing through the cumulative matrix
+    //     auto toRemove = traceForRemoval(cumulativeRotate);
+    //     for(auto x : toRemove) {
+    //         auto iter = clockWise.at(x.first).begin();
+    //         iter += x.second;
+    //         clockWise.at(x.first).erase(iter); // remove the colomn
+    //         iter = cumulativeRotate.at(x.first).begin();
+    //         iter += x.second;
+    //         cumulativeRotate.at(x.first).erase(iter); // also do it from the cumulative one
+    //     }
+    // }
 
-    for(int i = 0; i < horizontalRemove; ++i) {
-        //now flag them for removal by tracing through the cumulative matrix
-        auto toRemove = traceForRemoval(cumulativeRotate);
-        std::cout << "Removing these points\n";
-        for(auto x : toRemove) {
-            std::cout << '(' << x.first << ',' << x.second << ") ";
-        }
-        std::cout << "\n";
-        for(auto x : toRemove) {
-            auto iter = clockWise.at(x.first).begin();
-            iter += x.second;
-            clockWise.at(x.first).erase(iter); // remove the colomn
-            iter = cumulativeRotate.at(x.first).begin();
-            iter += x.second;
-            cumulativeRotate.at(x.first).erase(iter); // also do it from the cumulative one
-        }
-    }
+    // std::cout << "Rotating counterclockwise to print out\n";
+    // matrix final = rotateCounterClockWise(clockWise, max);
 
-    std::cout << "Rotating counterclockwise to print out\n";
-    matrix final = rotateCounterClockWise(clockWise, max);
-
+    matrix final = carve(argv[1], initial, verticalRemove, horizontalRemove);
     std::ofstream outFile;
-    outFile.open(std::string(argv[1]) + "_processed.pgm", std::ios::out);
+    outFile.open(std::string(argv[1]).substr(0,std::string(argv[1]).length() - 4) + "_processed.pgm", std::ios::out);
 
     // lastly we need to write out to a file
     outFile << "P2\n";
     outFile << "# Generated By SeamCarver\n";
+    outFile << final.at(0).size() << ' ' << final.size() << '\n'; // print out width and height
+    outFile << max << '\n'; // print out the max value
     for(auto x : final) {
         for(auto y : x)
             outFile << y << ' ';
