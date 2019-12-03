@@ -5,8 +5,8 @@
 #include <algorithm>
 #include <fstream>
 #include <sstream>
+#include <iomanip>
 #include <cmath>
-#include <bits/stdc++.h>
 typedef std::vector<std::vector<int>> matrix;
 
 // smallest case is when there's one row, cumulative energy is sum of total row percolated through the array
@@ -98,41 +98,29 @@ matrix cumulativeEnergy(matrix &m, int max) {
     for(int i = 0; i < copy.size(); ++i) {
         for(int j = 0; j < copy.at(i).size(); ++j) {
             if(i == 0 && j == 0) { // top left corner
-                result = (copy.at(i).at(j) + std::min((int)(copy.at(i).at(j + 1)), (int)(copy.at(i + 1).at(j))) < max ? (
-                    copy.at(i).at(j) + std::min((int)(copy.at(i).at(j + 1)), (int)(copy.at(i + 1).at(j)))
-                ) : (max));
+                result = (
+                    copy.at(i).at(j)
+                );
             } else if(i == 0 && j == copy.at(i).size() - 1) { // top right corner
-                result = (copy.at(i).at(j) + std::min((int)(copy.at(i).at(j - 1)), (int)(copy.at(i + 1).at(j))) < max ? (
-                    copy.at(i).at(j) + std::min((int)(copy.at(i).at(j - 1)), (int)(copy.at(i + 1).at(j)))
-                ) : (max));
-            } else if(i == copy.size() - 1 && j == 0) { // bottom left corner
-                result = (copy.at(i).at(j) + std::min((int)(copy.at(i).at(j + 1)), (int)(copy.at(i - 1).at(j))) < max ? (
-                    copy.at(i).at(j) + std::min((int)(copy.at(i).at(j + 1)), (int)(copy.at(i - 1).at(j)))
-                ) : (max));
-            } else if(i == copy.size() - 1 && j == copy.at(i).size() - 1) { // bottom right corner
-                result = (copy.at(i).at(j) + std::min((int)(copy.at(i).at(j - 1)), (int)(copy.at(i - 1).at(j))) < max ? (
-                    copy.at(i).at(j) + std::min((int)(copy.at(i).at(j - 1)), (int)(copy.at(i - 1).at(j)))
-                ) : (max));
+                result = (
+                    copy.at(i).at(j)
+                );
             } else if(j == 0) { // left edges not corners
-                result = (copy.at(i).at(j) + std::min(std::min((int)(copy.at(i).at(j + 1)), (int)(copy.at(i + 1).at(j))), (int)(copy.at(i - 1).at(j))) < max ? ( 
-                    copy.at(i).at(j) + std::min(std::min((int)(copy.at(i).at(j + 1)), (int)(copy.at(i + 1).at(j))), (int)(copy.at(i - 1).at(j)))
-                ) : (max));
+                result = (
+                    copy.at(i).at(j) + std::min(copy.at(i - 1).at(j), copy.at(i - 1).at(j + 1))
+                );
             } else if(j == copy.at(i).size() - 1) { // right edge not corners
-                result = (copy.at(i).at(j) + std::min(std::min((int)(copy.at(i).at(j - 1)), (int)(copy.at(i + 1).at(j))), (int)(copy.at(i - 1).at(j))) < max ? (copy.at(i).at(j) + 
-                    copy.at(i).at(j) + std::min(std::min((int)(copy.at(i).at(j - 1)), (int)(copy.at(i + 1).at(j))), (int)(copy.at(i - 1).at(j)))
-                ) : (max));
+                result = (
+                    copy.at(i).at(j) + std::min(copy.at(i - 1).at(j - 1), copy.at(i - 1).at(j))
+                );
             } else if(i == 0) { // top edge
-                result = (copy.at(i).at(j) + std::min(std::min((int)(copy.at(i).at(j - 1)), (int)(copy.at(i).at(j + 1))), (int)(copy.at(i + 1).at(j))) < max ? ( 
-                    copy.at(i).at(j) + std::min(std::min((int)(copy.at(i).at(j - 1)), (int)(copy.at(i).at(j + 1))), (int)(copy.at(i + 1).at(j)))
-                ) : (max));
-            } else if(i == copy.size() - 1) { // bottom edge
-                result = (copy.at(i).at(j) + std::min(std::min((int)(copy.at(i).at(j - 1)), (int)(copy.at(i).at(j + 1))), (int)(copy.at(i - 1).at(j))) < max ? (
-                    copy.at(i).at(j) + std::min(std::min((int)(copy.at(i).at(j - 1)), (int)(copy.at(i).at(j + 1))), (int)(copy.at(i - 1).at(j)))
-                ) : (max));
+                result = (
+                    copy.at(i).at(j)
+                );
             } else { // everything else
-                result = (copy.at(i).at(j) + std::min(std::min((int)(copy.at(i).at(j + 1)), (int)(copy.at(i + 1).at(j))), std::min((int)(copy.at(i - 1).at(j)), (int)(copy.at(i).at(j - 1)))) < max ? (
-                    copy.at(i).at(j) + std::min(std::min((int)(copy.at(i).at(j + 1)), (int)(copy.at(i + 1).at(j))), std::min((int)(copy.at(i - 1).at(j)), (int)(copy.at(i).at(j - 1))))
-                ) : (max));
+                result = (
+                    copy.at(i).at(j) + std::min(std::min(copy.at(i - 1).at(j - 1), copy.at(i - 1).at(j)), copy.at(i - 1).at(j + 1))
+                );
             }
             row.push_back(result);
             copy.at(i).at(j) = result;
@@ -262,39 +250,39 @@ std::vector<std::pair<int,int>> traceForRemoval(matrix &m) {
     toRemove.push_back(lowest);
     // now we need to keep moving down the chain to find the lowest
     while(lowest.first != m.size() - 1) {
-        if(lowest.second == m.at(0).size() - 1) {
-            if(m.at(lowest.first + 1).at(lowest.second) > m.at(lowest.first + 1).at(lowest.second - 1)) {
-                lowest.second -= 1;
+        if(lowest.second == 0) {
+            int val1 = m.at(lowest.first + 1).at(lowest.second), val2 = m.at(lowest.first + 1).at(lowest.second + 1);
+            lowest.first++;
+            if(val1 > val2) {
+                lowest.second++;
             }
-        } else if(lowest.second == 0) {
-            if(m.at(lowest.first + 1).at(lowest.second) > m.at(lowest.first + 1).at(lowest.second + 1)) {
-                lowest.second += 1;
+        } else if(lowest.second == m.at(lowest.first).size() - 1) {
+            int val1 = m.at(lowest.first + 1).at(lowest.second - 1), val2 = m.at(lowest.first + 1).at(lowest.second);
+            lowest.first++;
+            if(val2 > val1) {
+                lowest.second--;
             }
         } else {
-            if(m.at(lowest.first + 1).at(lowest.second) > m.at(lowest.first + 1).at(lowest.second - 1)) {
-                if(m.at(lowest.first + 1).at(lowest.second - 1) > m.at(lowest.first + 1).at(lowest.second + 1)) {
-                    lowest.second += 1;
-                } else {
-                    lowest.second -= 1;
+            int val1 = m.at(lowest.first + 1).at(lowest.second - 1), val2 = m.at(lowest.first + 1).at(lowest.second), val3 = m.at(lowest.first + 1).at(lowest.second + 1);
+            lowest.first += 1;
+            if(val1 > val2) {
+                if(val2 > val3) {
+                    lowest.second++;
                 }
             } else {
-                if(m.at(lowest.first + 1).at(lowest.second) > m.at(lowest.first + 1).at(lowest.second + 1)) {
-                    lowest.second += 1;
+                if(val1 > val3) {
+                    lowest.second++;
+                } else {
+                    lowest.second--;
                 }
             }
         }
-        if(lowest.first + 1 < m.size()) {
-            lowest.first++;
-            toRemove.push_back(lowest);
-        } else {
-            break;
-        }
+        toRemove.push_back(lowest);
     }
     return toRemove;
 }
 
-matrix carve(char* filename, matrix &initial, int verticalRemove, int horizontalRemove) {
-    int max;
+matrix carve(char* filename, matrix &initial, int verticalRemove, int horizontalRemove, int &max) {
     std::cout << "Reading in Initial Matrix\n";
     if(!readMatrix(filename, initial, max))
         return {{-1}}; // there was a problem
