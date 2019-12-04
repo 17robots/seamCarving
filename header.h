@@ -344,13 +344,13 @@ void carve(char *filename, matrix &initial, int verticalRemove, int horizontalRe
 {
     //std::ofstream ////////logger;
     ////////logger.open("log2.txt", std::ios::out);
-    std::cout << "Reading in Initial Matrix\n";
+    //std::cout << "Reading in Initial Matrix\n";
     if (!readMatrix(filename, initial, max))
         return; // there was a problem
     ////////logger << "Initial Matrix\n";
     for (auto x : initial)
     {
-        for (auto y : x)
+        // for (auto y : x)
             ////////logger << std::setw(4) << std::setfill('0') << y << ' ';
         ////////logger << '\n';
     }
@@ -370,7 +370,7 @@ void carve(char *filename, matrix &initial, int verticalRemove, int horizontalRe
         ////////logger << "Energy Matrix\n";
         for (auto x : energyMatrix)
         {
-            for (auto y : x)
+            // for (auto y : x)
                 ////////logger << std::setw(4) << std::setfill('0') << y << ' ';
             ////////logger << '\n';
         }
@@ -381,40 +381,40 @@ void carve(char *filename, matrix &initial, int verticalRemove, int horizontalRe
         ////////logger << "Cumulative Matrix\n";
         for (auto x : cumulative)
         {
-            for (auto y : x)
+            // for (auto y : x)
                 ////////logger << std::setw(4) << std::setfill('0') << y << ' ';
             ////////logger << '\n';
         }
         //now flag them for removal by tracing through the cumulative matrix
         auto toRemove = traceForRemoval(cumulative);
-        // std::cout << "Removing: \n";
+        // std:://cout << "Removing: \n";
         int totalEnergy = 0;
         for (auto x : toRemove)
         {
-            // std::cout << "(" << x.first << ", " << x.second << "): " << initial.at(x.first).at(x.second) << '\n';
+            // std:://cout << "(" << x.first << ", " << x.second << "): " << initial.at(x.first).at(x.second) << '\n';
             totalEnergy += initial.at(x.first).at(x.second);
             auto iter = initial.at(x.first).begin();
             iter += x.second;
             initial.at(x.first).erase(iter); // remove the colomn
         }
-        // std::cout << "Total Energy Removed: " << totalEnergy << '\n';
+        // std:://cout << "Total Energy Removed: " << totalEnergy << '\n';
     }
 
     ////////logger << "Trimmed Initial Matrix\n";
     for (auto x : initial)
     {
-        for (auto y : x)
+        // for (auto y : x)
             ////////logger << std::setw(4) << std::setfill('0') << y << ' ';
         ////////logger << '\n';
     }
 
     // rotate the matrix and go again
-    // std::cout << "Rotating initial to remove horizontal\n";
+    // std:://cout << "Rotating initial to remove horizontal\n";
     rotateClockWise(initial, max);
     ////////logger << "Rotated Matrix\n";
     for (auto x : initial)
     {
-        for (auto y : x)
+        // for (auto y : x)
             ////////logger << std::setw(4) << std::setfill('0') << y << ' ';
         ////////logger << '\n';
     }
@@ -422,30 +422,30 @@ void carve(char *filename, matrix &initial, int verticalRemove, int horizontalRe
     {
         //now flag them for removal by tracing through the cumulative matrix
         // calculate energy with current matrix
-        // std::cout << "Calculating Energy Matrix\n";
+        // std:://cout << "Calculating Energy Matrix\n";
         matrix initialEnergy = calculateEnergy(initial);
         ////////logger << "Energy Matrix\n";
         for (auto x : initialEnergy)
         {
-            for (auto y : x)
+            // for (auto y : x)
                 ////////logger << std::setw(4) << std::setfill('0') << y << ' ';
             ////////logger << '\n';
         }
 
         // calculate cumulative energy
-        // std::cout << "Calculating Cumulative Energy\n";
+        // std:://cout << "Calculating Cumulative Energy\n";
         matrix initialAcc = cumulativeEnergy(initialEnergy, max);
         ////////logger << "Cumulative Matrix\n";
         for (auto x : initialAcc)
         {
-            for (auto y : x)
+            // for (auto y : x)
                 ////////logger << std::setw(4) << std::setfill('0') << y << ' ';
             ////////logger << '\n';
         }
         auto toRemove = traceForRemoval(initialAcc);
         for (auto x : toRemove)
         {
-            // std::cout << "Removing (" << x.first << ", " << x.second << ")\n";
+            // std:://cout << "Removing (" << x.first << ", " << x.second << ")\n";
             auto iter = initial.at(x.first).begin();
             iter += x.second;
             initial.at(x.first).erase(iter); // remove the colomn
@@ -453,14 +453,19 @@ void carve(char *filename, matrix &initial, int verticalRemove, int horizontalRe
     }
 
     ////////logger << "Trimmed Rotated Matrix\n";
+
+    logger << "Trimmed Rotated Matrix\n";
     for (auto x : initial)
+    for (auto x : initial)
+
     {
-        for (auto y : x)
+        // for (auto y : x)
             ////////logger << std::setw(4) << std::setfill('0') << y << ' ';
         ////////logger << '\n';
     }
 
-    // std::cout << "Rotating counterinitial to print out\n";
+
+    // std:://cout << "Rotating counterinitial to print out\n";
     rotateClockWise(initial, max);
     ////////logger << "Final Matrix\n";
     for (auto x : initial)
@@ -469,4 +474,7 @@ void carve(char *filename, matrix &initial, int verticalRemove, int horizontalRe
             ////////logger << std::setw(4) << std::setfill('0') << y << ' ';
         ////////logger << '\n';
     }
+    // std::cout << "Rotating counterclockwise to print out\n";
+    rotateClockWise(initial, max);
+    return;
 }
