@@ -13,16 +13,28 @@ bool test1()
         std::cout << "Successfully read in correct matrix\n";
     }
     matrix initial;
+<<<<<<< HEAD
     carve("projectTests/bug.pgm", initial, 20, 15, max);
     bool result = initial == correctAnswer;
+=======
+    matrix toTest = carve("projectTests/bug.pgm", initial, 20, 15, max);
+    bool result = toTest == correctAnswer;
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
     if (!result)
     {
         int totalDiff = 0;
         logger << "Differences: \n";
+<<<<<<< HEAD
         for(int i = 0; i < initial.size(); ++i) {
             for(int j = 0; j < initial.at(i).size(); ++j) {
                 if(initial.at(i).at(j) != correctAnswer.at(i).at(j)) {
                     logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << initial.at(i).at(j) << ")\n";
+=======
+        for(int i = 0; i < toTest.size(); ++i) {
+            for(int j = 0; j < toTest.at(i).size(); ++j) {
+                if(toTest.at(i).at(j) != correctAnswer.at(i).at(j)) {
+                    logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << toTest.at(i).at(j) << ")\n";
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
                     totalDiff++;
                 }
             }
@@ -42,16 +54,28 @@ bool test2()
         logger << "Successfully read in correct matrix\n";
     }
     matrix initial;
+<<<<<<< HEAD
     carve("projectTests/CAS.pgm", initial, 100, 50, max);
     bool result = initial == correctAnswer;
+=======
+    matrix toTest = carve("projectTests/CAS.pgm", initial, 100, 50, max);
+    bool result = toTest == correctAnswer;
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
     if (!result)
     {
         int totalDiff = 0;
         logger << "Differences: \n";
+<<<<<<< HEAD
         for(int i = 0; i < initial.size(); ++i) {
             for(int j = 0; j < initial.at(i).size(); ++j) {
                 if(initial.at(i).at(j) != correctAnswer.at(i).at(j)) {
                     logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << initial.at(i).at(j) << ")\n";
+=======
+        for(int i = 0; i < toTest.size(); ++i) {
+            for(int j = 0; j < toTest.at(i).size(); ++j) {
+                if(toTest.at(i).at(j) != correctAnswer.at(i).at(j)) {
+                    logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << toTest.at(i).at(j) << ")\n";
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
                     totalDiff++;
                 }
             }
@@ -71,16 +95,28 @@ bool test3()
         logger << "Successfully read in correct matrix\n";
     }
     matrix initial;
+<<<<<<< HEAD
     carve("projectTests/joconde.pgm", initial, 0, 150, max);
     bool result = initial == correctAnswer;
+=======
+    matrix toTest = carve("projectTests/joconde.pgm", initial, 0, 150, max);
+    bool result = toTest == correctAnswer;
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
     if (!result)
     {
         int totalDiff = 0;
         logger << "Differences: \n";
+<<<<<<< HEAD
         for(int i = 0; i < initial.size(); ++i) {
             for(int j = 0; j < initial.at(i).size(); ++j) {
                 if(initial.at(i).at(j) != correctAnswer.at(i).at(j)) {
                     logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << initial.at(i).at(j) << ")\n";
+=======
+        for(int i = 0; i < toTest.size(); ++i) {
+            for(int j = 0; j < toTest.at(i).size(); ++j) {
+                if(toTest.at(i).at(j) != correctAnswer.at(i).at(j)) {
+                    logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << toTest.at(i).at(j) << ")\n";
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
                     totalDiff++;
                 }
             }
@@ -100,16 +136,28 @@ bool test4()
         logger << "Successfully read in correct matrix\n";
     }
     matrix initial;
+<<<<<<< HEAD
     carve("projectTests/test.pgm", initial, 0, 2, max);
     bool result = initial == correctAnswer;
+=======
+    matrix toTest = carve("projectTests/test.pgm", initial, 0, 2, max);
+    bool result = toTest == correctAnswer;
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
     if (!result)
     {
         int totalDiff = 0;
         logger << "Differences: \n";
+<<<<<<< HEAD
         for(int i = 0; i < initial.size(); ++i) {
             for(int j = 0; j < initial.at(i).size(); ++j) {
                 if(initial.at(i).at(j) != correctAnswer.at(i).at(j)) {
                     logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << initial.at(i).at(j) << ")\n";
+=======
+        for(int i = 0; i < toTest.size(); ++i) {
+            for(int j = 0; j < toTest.at(i).size(); ++j) {
+                if(toTest.at(i).at(j) != correctAnswer.at(i).at(j)) {
+                    logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << toTest.at(i).at(j) << ")\n";
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
                     totalDiff++;
                 }
             }
@@ -129,16 +177,28 @@ bool test5()
         logger << "Successfully read in correct matrix\n";
     }
     matrix initial;
+<<<<<<< HEAD
     carve("projectTests/test.pgm", initial, 1, 0, max);
     bool result = initial == correctAnswer;
+=======
+    matrix toTest = carve("projectTests/test.pgm", initial, 1, 0, max);
+    bool result = toTest == correctAnswer;
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
     if (!result)
     {
         int totalDiff = 0;
         logger << "Differences: \n";
+<<<<<<< HEAD
         for(int i = 0; i < initial.size(); ++i) {
             for(int j = 0; j < initial.at(i).size(); ++j) {
                 if(initial.at(i).at(j) != correctAnswer.at(i).at(j)) {
                     logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << initial.at(i).at(j) << ")\n";
+=======
+        for(int i = 0; i < toTest.size(); ++i) {
+            for(int j = 0; j < toTest.at(i).size(); ++j) {
+                if(toTest.at(i).at(j) != correctAnswer.at(i).at(j)) {
+                    logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << toTest.at(i).at(j) << ")\n";
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
                     totalDiff++;
                 }
             }
@@ -158,16 +218,28 @@ bool test6()
         logger << "Successfully read in correct matrix\n";
     }
     matrix initial;
+<<<<<<< HEAD
     carve("projectTests/test.pgm", initial, 1, 1, max);
     bool result = initial == correctAnswer;
+=======
+    matrix toTest = carve("projectTests/test.pgm", initial, 1, 1, max);
+    bool result = toTest == correctAnswer;
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
     if (!result)
     {
         int totalDiff = 0;
         logger << "Differences: \n";
+<<<<<<< HEAD
         for(int i = 0; i < initial.size(); ++i) {
             for(int j = 0; j < initial.at(i).size(); ++j) {
                 if(initial.at(i).at(j) != correctAnswer.at(i).at(j)) {
                     logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << initial.at(i).at(j) << ")\n";
+=======
+        for(int i = 0; i < toTest.size(); ++i) {
+            for(int j = 0; j < toTest.at(i).size(); ++j) {
+                if(toTest.at(i).at(j) != correctAnswer.at(i).at(j)) {
+                    logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << toTest.at(i).at(j) << ")\n";
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
                     totalDiff++;
                 }
             }
@@ -187,16 +259,28 @@ bool test7()
         logger << "Successfully read in correct matrix\n";
     }
     matrix initial;
+<<<<<<< HEAD
     carve("projectTests/test2.pgm", initial, 0, 1, max);
     bool result = initial == correctAnswer;
+=======
+    matrix toTest = carve("projectTests/test2.pgm", initial, 0, 1, max);
+    bool result = toTest == correctAnswer;
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
     if (!result)
     {
         int totalDiff = 0;
         logger << "Differences: \n";
+<<<<<<< HEAD
         for(int i = 0; i < initial.size(); ++i) {
             for(int j = 0; j < initial.at(i).size(); ++j) {
                 if(initial.at(i).at(j) != correctAnswer.at(i).at(j)) {
                     logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << initial.at(i).at(j) << ")\n";
+=======
+        for(int i = 0; i < toTest.size(); ++i) {
+            for(int j = 0; j < toTest.at(i).size(); ++j) {
+                if(toTest.at(i).at(j) != correctAnswer.at(i).at(j)) {
+                    logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << toTest.at(i).at(j) << ")\n";
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
                     totalDiff++;
                 }
             }
@@ -217,16 +301,28 @@ bool test8()
         logger << "Successfully read in correct matrix\n";
     }
     matrix initial;
+<<<<<<< HEAD
     carve("projectTests/twoBalls.pgm", initial, 0, 116, max);
     bool result = initial == correctAnswer;
+=======
+    matrix toTest = carve("projectTests/twoBalls.pgm", initial, 0, 116, max);
+    bool result = toTest == correctAnswer;
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
     if (!result)
     {
         int totalDiff = 0;
         logger << "Differences: \n";
+<<<<<<< HEAD
         for(int i = 0; i < initial.size(); ++i) {
             for(int j = 0; j < initial.at(i).size(); ++j) {
                 if(initial.at(i).at(j) != correctAnswer.at(i).at(j)) {
                     logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << initial.at(i).at(j) << ")\n";
+=======
+        for(int i = 0; i < toTest.size(); ++i) {
+            for(int j = 0; j < toTest.at(i).size(); ++j) {
+                if(toTest.at(i).at(j) != correctAnswer.at(i).at(j)) {
+                    logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << toTest.at(i).at(j) << ")\n";
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
                     totalDiff++;
                 }
             }
@@ -246,16 +342,28 @@ bool test9()
         logger << "Successfully read in correct matrix\n";
     }
     matrix initial;
+<<<<<<< HEAD
     carve("projectTests/twoBalls.pgm", initial, 68, 0, max);
     bool result = initial == correctAnswer;
+=======
+    matrix toTest = carve("projectTests/twoBalls.pgm", initial, 68, 0, max);
+    bool result = toTest == correctAnswer;
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
     if (!result)
     {
         int totalDiff = 0;
         logger << "Differences: \n";
+<<<<<<< HEAD
         for(int i = 0; i < initial.size(); ++i) {
             for(int j = 0; j < initial.at(i).size(); ++j) {
                 if(initial.at(i).at(j) != correctAnswer.at(i).at(j)) {
                     logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << initial.at(i).at(j) << ")\n";
+=======
+        for(int i = 0; i < toTest.size(); ++i) {
+            for(int j = 0; j < toTest.at(i).size(); ++j) {
+                if(toTest.at(i).at(j) != correctAnswer.at(i).at(j)) {
+                    logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << toTest.at(i).at(j) << ")\n";
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
                     totalDiff++;
                 }
             }
@@ -275,16 +383,28 @@ bool test10()
         logger << "Successfully read in correct matrix\n";
     }
     matrix initial;
+<<<<<<< HEAD
     carve("projectTests/twoBalls.pgm", initial, 211, 68, max);
     bool result = initial == correctAnswer;
+=======
+    matrix toTest = carve("projectTests/twoBalls.pgm", initial, 211, 68, max);
+    bool result = toTest == correctAnswer;
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
     if (!result)
     {
         int totalDiff = 0;
         logger << "Differences: \n";
+<<<<<<< HEAD
         for(int i = 0; i < initial.size(); ++i) {
             for(int j = 0; j < initial.at(i).size(); ++j) {
                 if(initial.at(i).at(j) != correctAnswer.at(i).at(j)) {
                     logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << initial.at(i).at(j) << ")\n";
+=======
+        for(int i = 0; i < toTest.size(); ++i) {
+            for(int j = 0; j < toTest.at(i).size(); ++j) {
+                if(toTest.at(i).at(j) != correctAnswer.at(i).at(j)) {
+                    logger << "Difference at " << i << ", j: " << j << " (Correct: " << correctAnswer.at(i).at(j) << ", Calculated: " << toTest.at(i).at(j) << ")\n";
+>>>>>>> 6af4c4348095384c2b73e420284769bac69c26e9
                     totalDiff++;
                 }
             }
