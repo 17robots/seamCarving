@@ -465,7 +465,7 @@ void carve(char *filename, matrix &initial, int verticalRemove, int horizontalRe
     ////////logger << "Final Matrix\n";
     for (auto x : initial)
     {
-        for (auto y : x)
+        // for (auto y : x)
             ////////logger << std::setw(4) << std::setfill('0') << y << ' ';
         ////////logger << '\n';
     }
